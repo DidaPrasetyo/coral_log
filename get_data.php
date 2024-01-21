@@ -23,7 +23,7 @@ $orderBy = $columns[$orderColumn];
 $searchValue = isset($_GET['search']['value']) ? $_GET['search']['value'] : '';
 
 // Your SQL query to fetch data with pagination and sorting
-$sql = "SELECT id, detect_time AS timestamp, count AS `person detected`, img AS image FROM detection_log_rtsp_1h WHERE detect_time LIKE '%$searchValue%' OR count LIKE '%$searchValue%' ORDER BY $orderBy $orderDir LIMIT $start, $length";
+$sql = "SELECT id, detect_time AS timestamp, count AS `person detected`, img AS image FROM detection_log WHERE detect_time LIKE '%$searchValue%' OR count LIKE '%$searchValue%' ORDER BY $orderBy $orderDir LIMIT $start, $length";
 $result = mysqli_query($conn, $sql);
 
 // Fetch data and convert to JSON
@@ -38,12 +38,12 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 // Total records without filtering
-$sqlTotal = "SELECT COUNT(*) as total FROM detection_log_rtsp_1h";
+$sqlTotal = "SELECT COUNT(*) as total FROM detection_log";
 $resultTotal = mysqli_query($conn, $sqlTotal);
 $totalRecords = mysqli_fetch_assoc($resultTotal)['total'];
 
 // Total records with filtering
-$sqlFiltered = "SELECT COUNT(*) as total FROM detection_log_rtsp_1h WHERE detect_time LIKE '%$searchValue%' OR count LIKE '%$searchValue%'";
+$sqlFiltered = "SELECT COUNT(*) as total FROM detection_log WHERE detect_time LIKE '%$searchValue%' OR count LIKE '%$searchValue%'";
 $resultFiltered = mysqli_query($conn, $sqlFiltered);
 $totalFilteredRecords = mysqli_fetch_assoc($resultFiltered)['total'];
 
