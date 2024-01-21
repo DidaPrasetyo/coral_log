@@ -1,33 +1,8 @@
 <?php
-// // Connect to MySQL
-// $conn = mysqli_connect("localhost", "root", "", "coral");
-// // $conn = mysqli_connect("10.15.40.161", "coral", "", "coral");
-
-
-// // Check connection
-// if (!$conn) {
-//     die("Connection failed: " . mysqli_connect_error());
-// }
-
-// // Fetch all BLOB data
-// $sql = "SELECT * FROM detection_log
-//         -- MobileNet v1
-//         -- WHERE detect_time BETWEEN '2024-01-06 23:48:01' AND '2024-01-07 00:53:50'
-//         -- MobileNet v2
-//         -- WHERE detect_time BETWEEN '2024-01-07 00:53:50' AND '2024-01-07_01:55:52'
-//         -- MobileDet
-//         -- WHERE detect_time > '2024-01-07_01:55:52'
-//         -- ORDER BY detect_time DESC
-//         -- LIMIT 100"; // Modify the query based on your table structure
-// $result = mysqli_query($conn, $sql);
-
-// // Close the connection
-// mysqli_close($conn);
-?>
-
-<?php
 // Connect to MySQL
-$conn = mysqli_connect("localhost", "root", "", "coral");
+// $conn = mysqli_connect("localhost", "root", "", "coral");
+$conn = mysqli_connect("10.15.40.161", "coral", "", "coral");
+
 
 // Check connection
 if (!$conn) {
@@ -54,7 +29,12 @@ $result = mysqli_query($conn, $sql);
 // Fetch data and convert to JSON
 $data = array();
 while ($row = mysqli_fetch_assoc($result)) {
-    $data[] = $row;
+    $imageData = base64_encode($row["image"]);
+    $data[] = array(
+        "timestamp" => $row["timestamp"],
+        "person detected" => $row["person detected"],
+        "image" => $imageData
+    );
 }
 
 // Total records without filtering
@@ -74,6 +54,7 @@ $response = array(
     "data" => $data
 );
 
+header('Content-Type: application/json');
 echo json_encode($response);
 
 // Close the connection (moved after JSON response to ensure data is fetched)
