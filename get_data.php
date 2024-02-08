@@ -1,7 +1,6 @@
 <?php
 // Connect to MySQL
-// $conn = mysqli_connect("localhost", "root", "", "coral");
-$conn = mysqli_connect("10.15.40.161", "coral", "", "coral");
+$conn = mysqli_connect("localhost", "root", "", "coral");
 
 
 // Check connection
