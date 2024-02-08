@@ -35,7 +35,7 @@ In this guide, we are using LAMP Stack on Ubuntu 18.04 device. Feel free to use 
     FLUSH PRIVILEGES;
     ```
     
-    Using `'@%'` is not recommended as it can open security holes that allow users to access from any IP address.  Instead, it is recommended to explicitly declare the permitted IP addresses, ex: `‘coral’@’10.15.40.161’`, so that only users from 10.15.40.161 IP address can access them. 
+    Using `'@%'` is not recommended as it can open security holes that allow users to access from any IP address.  Instead, it is recommended to explicitly declare the permitted IP addresses, ex: `'coral'@'10.15.40.161'`, so that only users from 10.15.40.161 IP address can access them. 
     
 4. Import the SQL file contained in the database folder from the previously cloned repository
     
