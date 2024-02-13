@@ -59,7 +59,11 @@ From here, you can continue setting up the implementation of human detection on 
     - On LAMP Stack, copy this repository into `/var/www/html`
     - On XAMPP, copy this repository into your `htdocs` folder
     - On WampServer, copy this repository into your `wamp/www` folder
-2. Access the website using a browser with the address `http://{ip webserver}/coral_log/` or `http://localhost/coral_log/` if the browser is opened on the same device as the web server
+2. Change the database address from `localhost` into your address in get_data.php
+   ```php
+   $conn = mysqli_connect("localhost", "coral", "", "coral");
+   ```
+3. Access the website using a browser with the address `http://{ip webserver}/coral_log/` or `http://localhost/coral_log/` if the browser is opened on the same device as the web server
     
     The following is a view of the website
     
